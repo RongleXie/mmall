@@ -32,7 +32,7 @@ public class UserController {
 	 * @param password 密码
 	 * @param session
 	 * @return java.lang.Object
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class UserController {
 	 *
 	 * @param session
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
 	@RequestMapping(value = "logout.do",method = RequestMethod.GET)
@@ -65,7 +65,7 @@ public class UserController {
 	 *
 	 * @param user
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "register.do", method = RequestMethod.GET)
@@ -80,7 +80,7 @@ public class UserController {
 	 * @param value
 	 * @param type
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "check_valid.do", method = RequestMethod.GET)

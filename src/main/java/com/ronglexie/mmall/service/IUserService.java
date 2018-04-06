@@ -6,7 +6,7 @@ import com.ronglexie.mmall.domain.User;
 /**
  * 用户service层
  * 
- * @author wxt.xqr
+ * @author ronglexie
  * @version 2018/4/6
  */
 public interface IUserService {
@@ -17,7 +17,7 @@ public interface IUserService {
 	 * @param username
 	 * @param password 
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
 	ServerResponse<User> login(String username, String password);
@@ -27,7 +27,7 @@ public interface IUserService {
 	 *
 	 * @param user 
 	 * @return com.ronglexie.mmall.common.ServerResponse<ava.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
 	ServerResponse<String> register(User user);
@@ -38,7 +38,7 @@ public interface IUserService {
 	 * @param value 参数值
 	 * @param type 参数类型
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> checkValid(String value, String type);

@@ -3,7 +3,7 @@ package com.ronglexie.mmall.common;
 /**
  * 高复用服务响应对象Code枚举
  *
- * @author wxt.xqr
+ * @author ronglexie
  * @version 2018/4/6
  */
 public enum ResponseEnum {

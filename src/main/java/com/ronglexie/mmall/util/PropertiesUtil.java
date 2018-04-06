@@ -11,7 +11,7 @@ import java.util.Properties;
 /**
  * properties配置文件工具类
  *
- * @author wxt.xqr
+ * @author ronglexie
  * @version 2018/4/6
  */
 public class PropertiesUtil {

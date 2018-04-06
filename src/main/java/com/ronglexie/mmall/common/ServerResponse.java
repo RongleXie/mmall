@@ -43,7 +43,7 @@ public class ServerResponse<T> implements Serializable {
 	 *
 	 * @param  
 	 * @return boolean
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
 	@JsonIgnore//不进行Json序列化

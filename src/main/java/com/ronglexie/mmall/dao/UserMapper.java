@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 /**
  * 用户Dao层
  *
- * @author wxt.xqr
+ * @author ronglexie
  * @version 2018/4/6
  */
 public interface UserMapper {
@@ -26,7 +26,7 @@ public interface UserMapper {
      * 检查用户名是否存在
      * @param username
      * @return int
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/4/6
      */
     int checkUsername(String username);
@@ -35,7 +35,7 @@ public interface UserMapper {
      * 检查用户邮箱是否存在
      * @param email
      * @return int
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/4/6
      */
     int checkEmail(String email);
@@ -46,7 +46,7 @@ public interface UserMapper {
      * @param username
      * @param password
      * @return com.ronglexie.mmall.domain.User
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/4/6
      */
     User selectLogin(@Param("username") String username, @Param("password") String password);
