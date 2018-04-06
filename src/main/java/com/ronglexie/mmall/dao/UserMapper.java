@@ -1,7 +1,14 @@
 package com.ronglexie.mmall.dao;
 
 import com.ronglexie.mmall.domain.User;
+import org.apache.ibatis.annotations.Param;
 
+/**
+ * 用户Dao层
+ *
+ * @author wxt.xqr
+ * @version 2018/4/6
+ */
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +21,35 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /**
+     * 检查用户名是否存在
+     * @param username
+     * @return int
+     * @author wxt.xqr
+     * @version 2018/4/6
+     */
+    int checkUsername(String username);
+
+    /**
+     * 检查用户邮箱是否存在
+     * @param email
+     * @return int
+     * @author wxt.xqr
+     * @version 2018/4/6
+     */
+    int checkEmail(String email);
+
+    /**
+     * 登录
+     *
+     * @param username
+     * @param password
+     * @return com.ronglexie.mmall.domain.User
+     * @author wxt.xqr
+     * @version 2018/4/6
+     */
+    User selectLogin(@Param("username") String username, @Param("password") String password);
+
+
 }
