@@ -77,7 +77,7 @@
     </bean>
 
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.mmall.dao"/>
+        <property name="basePackage" value="com.ronglexie.mmall.dao"/>
     </bean>
 
     <!-- 使用@Transactional进行声明式事务管理需要声明下面这行 -->
