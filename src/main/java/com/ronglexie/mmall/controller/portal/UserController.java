@@ -88,4 +88,51 @@ public class UserController {
 	public ServerResponse<String> checkValid(String value, String type){
 		return iUserService.checkValid(value, type);
 	}
+
+	/**
+	 * 获取用户个人信息
+	 *
+	 * @param session
+	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	@RequestMapping(value = "get_user_info", method = RequestMethod.GET)
+	@ResponseBody
+	public ServerResponse<User> getUserInfo(HttpSession session){
+		User user = (User)session.getAttribute(PublicConst.CURRENT_USER);
+		if(user != null){
+			return ServerResponse.createBySuccess(user);
+		}
+		return ServerResponse.createByErrorMsg("用户未登录，无法获取用户的个人信息");
+	}
+
+	/**
+	 * 根据用户名查询用户找回密码问题
+	 *
+	 * @param username 用户名
+	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	@RequestMapping(value = "forget_get_question.do",method = RequestMethod.GET)
+	@ResponseBody
+	public ServerResponse<String> forgetGetQuestion(String username){
+		return iUserService.selectQuestion(username);
+	}
+
+	/**
+	 * 校验找回密码问题答案是否正确
+	 *
+	 * @param username
+	 * @param question
+	 * @param answer
+	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	@RequestMapping(value = "forget_check_answer.do", method = RequestMethod.GET)
+	public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer){
+		return iUserService.forgetCheckAnswer(username, question, answer);
+	}
 }

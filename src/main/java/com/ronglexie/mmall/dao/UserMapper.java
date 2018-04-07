@@ -24,32 +24,52 @@ public interface UserMapper {
 
     /**
      * 检查用户名是否存在
-     * @param username
+     * @param username 用户名
      * @return int
      * @author ronglexie
      * @version 2018/4/6
      */
-    int checkUsername(String username);
+    int checkUsername(@Param("username") String username);
 
     /**
      * 检查用户邮箱是否存在
-     * @param email
+     * @param email 邮箱
      * @return int
      * @author ronglexie
      * @version 2018/4/6
      */
-    int checkEmail(String email);
+    int checkEmail(@Param("email") String email);
 
     /**
      * 登录
      *
-     * @param username
-     * @param password
+     * @param username 用户名
+     * @param password 密码
      * @return com.ronglexie.mmall.domain.User
      * @author ronglexie
      * @version 2018/4/6
      */
     User selectLogin(@Param("username") String username, @Param("password") String password);
 
+	/**
+	 * 根据用户名查询用户找回密码问题
+	 *
+	 * @param username 用户名
+	 * @return java.lang.String
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	String selectQuestionByusername(@Param("username") String username);
 
+	/**
+	 * 校验找回密码问题答案是否正确
+	 *
+	 * @param username 用户名
+	 * @param question 问题
+	 * @param answer 答案
+	 * @return int
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	int checkAnswer(@Param("username") String username,@Param("question") String question,@Param("answer") String answer);
 }

@@ -42,4 +42,26 @@ public interface IUserService {
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> checkValid(String value, String type);
+
+	/**
+	 * 根据用户名查询用户找回密码问题
+	 *
+	 * @param username 用户名
+	 * @return com.ronglexie.mmall.common.ServerResponse
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse selectQuestion(String username);
+	
+	/**
+	 * 校验找回密码问题答案是否正确
+	 *
+	 * @param username 用户名
+	 * @param question 问题
+	 * @param answer 答案
+	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse<String> forgetCheckAnswer(String username, String question, String answer);
 }

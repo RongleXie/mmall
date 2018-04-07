@@ -2,12 +2,15 @@ package com.ronglexie.mmall.service.impl;
 
 import com.ronglexie.mmall.common.PublicConst;
 import com.ronglexie.mmall.common.ServerResponse;
+import com.ronglexie.mmall.common.LocalCache;
 import com.ronglexie.mmall.dao.UserMapper;
 import com.ronglexie.mmall.domain.User;
 import com.ronglexie.mmall.service.IUserService;
 import com.ronglexie.mmall.util.MD5Util;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 /**
  * 用户Service层接口实现
@@ -77,5 +80,30 @@ public class IUserServiceImpl implements IUserService {
 			return ServerResponse.createByErrorMsg("参数错误");
 		}
 		return ServerResponse.createBySuccessMsg("校验成功");
+	}
+
+	@Override
+	public ServerResponse selectQuestion(String username) {
+		ServerResponse<String> usernameServerResponse = this.checkValid(username, PublicConst.USERNAME);
+		if(!usernameServerResponse.isSuccess()){
+			return usernameServerResponse;
+		}
+		String question = userMapper.selectQuestionByusername(username);
+		if(StringUtils.isNotBlank(question)){
+			return ServerResponse.createBySuccess(question);
+		}
+		return ServerResponse.createByErrorMsg("未设置找回密码的问题");
+	}
+
+	@Override
+	public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer) {
+		int resultCount = userMapper.checkAnswer(username, question, answer);
+		if(resultCount > 0){
+			//找回密码问题答案正确
+			String forgetToken = UUID.randomUUID().toString();
+			LocalCache.setKey(LocalCache.TOKEN_PREFIX+username,forgetToken);
+			return ServerResponse.createBySuccess(forgetToken);
+		}
+		return ServerResponse.createByErrorMsg("问题答案错误");
 	}
 }

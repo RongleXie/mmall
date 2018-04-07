@@ -160,6 +160,14 @@
   <select id="checkEmail" resultType="java.lang.Integer" parameterType="string">
     SELECT COUNT(1) FROM mmall_user WHERE email = #{email}
   </select>
+  <!-- 校验找回密码问题答案是否正确 -->
+  <select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
+    SELECT COUNT(1) FROM mmall_user WHERE username = #{username} and question = #{question} and answer = #{answer}
+  </select>
+  <!-- 根据用户名查询用户找回密码问题 -->
+  <select id="selectQuestionByusername" resultType="java.lang.String" parameterType="string">
+    SELECT question FROM mmall_user WHERE username = #{username}
+  </select>
 
   <!-- 检查用户名是否存在 -->
   <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
