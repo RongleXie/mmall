@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * token缓存
+ * 本地缓存
  *
  * @author ronglexie
  * @version 2018/4/7
@@ -20,6 +20,11 @@ public class LocalCache {
 	 * 日志对象
 	 */
 	private static Logger logger = LoggerFactory.getLogger(LocalCache.class);
+
+	/**
+	 * Token缓存key前缀
+	 */
+	public static final String TOKEN_PREFIX = "token_";
 
 	//LRU算法 存储到最大值时使用最小使用算法清除
 	public static LoadingCache<String, String> localCache = CacheBuilder.newBuilder().initialCapacity(1000)
