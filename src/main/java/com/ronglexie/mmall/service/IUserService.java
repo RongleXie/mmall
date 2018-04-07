@@ -64,4 +64,48 @@ public interface IUserService {
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> forgetCheckAnswer(String username, String question, String answer);
+
+	/**
+	 * 忘记密码后重置密码
+	 *
+	 * @param username 用户名
+	 * @param newPassword 新密码
+	 * @param forgetToken token
+	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse<String> forgetResetPassword(String username, String newPassword, String forgetToken);
+
+	/**
+	 * 登录状态下重置密码
+	 *
+	 * @param oldPassword
+	 * @param newPassword
+	 * @param user
+	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse<String> resetPassword(String oldPassword, String newPassword, User user);
+
+	/**
+	 * 更新用户个人信息
+	 *
+	 * @param user
+	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse<User> updateUserInfo(User user);
+
+	/**
+	 * 获取个人信息
+	 *
+	 * @param id 用户id
+	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	ServerResponse<User> getUserInfo(Integer id);
 }

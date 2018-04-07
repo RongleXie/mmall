@@ -72,4 +72,37 @@ public interface UserMapper {
 	 * @version 2018/4/7
 	 */
 	int checkAnswer(@Param("username") String username,@Param("question") String question,@Param("answer") String answer);
+
+	/**
+	 * 根据用户名更新用户密码
+	 *
+	 * @param username 用户名
+	 * @param password 密码
+	 * @return int
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	int updatePasswordByUsername(@Param("username") String username,@Param("password") String password);
+
+	/**
+	 * 校验输入密码是否正确
+	 *
+	 * @param password 密码
+	 * @param userId 用户id
+	 * @return int
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	int checkPassword(@Param("password")String password, @Param("userId") Integer userId);
+
+	/**
+	 * 校验用户Email是否重复
+	 *
+	 * @param email 邮箱
+	 * @param userId 用户id
+	 * @return int
+	 * @author wxt.xqr
+	 * @version 2018/4/7
+	 */
+	int checkEmailByUserId(@Param("email") String email,@Param("userId") Integer userId);
 }

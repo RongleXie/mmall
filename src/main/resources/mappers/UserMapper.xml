@@ -153,20 +153,58 @@
   </update>
 
   <!-- 检查用户名是否存在 -->
-  <select id="checkUsername" resultType="java.lang.Integer" parameterType="string">
-    SELECT COUNT(1) FROM mmall_user WHERE username = #{username}
-  </select>
+  <select id="checkUsername" resultType="int" parameterType="string">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE username = #{username}
   <!-- 检查用户邮箱是否存在 -->
-  <select id="checkEmail" resultType="java.lang.Integer" parameterType="string">
-    SELECT COUNT(1) FROM mmall_user WHERE email = #{email}
+  <select id="checkEmail" resultType="int" parameterType="string">
+    SELECT
+    COUNT(1)
+    FROM
+    mmall_user
+    WHERE email = #{email}
   </select>
   <!-- 校验找回密码问题答案是否正确 -->
-  <select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
-    SELECT COUNT(1) FROM mmall_user WHERE username = #{username} and question = #{question} and answer = #{answer}
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE username = #{username}
+    and question = #{question}
+    and answer = #{answer}
   </select>
   <!-- 根据用户名查询用户找回密码问题 -->
-  <select id="selectQuestionByusername" resultType="java.lang.String" parameterType="string">
-    SELECT question FROM mmall_user WHERE username = #{username}
+  <select id="selectQuestionByusername" resultType="string" parameterType="string">
+    SELECT
+    question
+    FROM mmall_user
+    WHERE username = #{username}
+  </select>
+  <!-- 根据用户名更新用户密码 -->
+  <select id="updatePasswordByUsername" parameterType="map">
+    UPDATE
+    mmall_user
+    SET password = #{password},
+    update_time = now()
+    WHERE username = #{username}
+  </select>
+  <!-- 校验输入密码是否正确 -->
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE password = #{password}
+    and id = #{userId}
+  </select>
+  <!-- 校验用户Email是否重复 -->
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE email = #{email}
+    and id != #{userId}
   </select>
 
   <!-- 检查用户名是否存在 -->
