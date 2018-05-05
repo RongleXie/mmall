@@ -48,7 +48,7 @@ public class LocalCache {
 			}
 			return value;
 		} catch (ExecutionException e) {
-			logger.error("localChche get error",e);
+			logger.error("localCache get error",e);
 		}
 		return null;
 	}
