@@ -56,7 +56,7 @@ public interface UserMapper {
 	 *
 	 * @param username 用户名
 	 * @return java.lang.String
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	String selectQuestionByusername(@Param("username") String username);
@@ -68,7 +68,7 @@ public interface UserMapper {
 	 * @param question 问题
 	 * @param answer 答案
 	 * @return int
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	int checkAnswer(@Param("username") String username,@Param("question") String question,@Param("answer") String answer);
@@ -79,7 +79,7 @@ public interface UserMapper {
 	 * @param username 用户名
 	 * @param password 密码
 	 * @return int
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	int updatePasswordByUsername(@Param("username") String username,@Param("password") String password);
@@ -90,7 +90,7 @@ public interface UserMapper {
 	 * @param password 密码
 	 * @param userId 用户id
 	 * @return int
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	int checkPassword(@Param("password")String password, @Param("userId") Integer userId);
@@ -101,7 +101,7 @@ public interface UserMapper {
 	 * @param email 邮箱
 	 * @param userId 用户id
 	 * @return int
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	int checkEmailByUserId(@Param("email") String email,@Param("userId") Integer userId);

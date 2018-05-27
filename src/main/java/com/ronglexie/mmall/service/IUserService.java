@@ -48,7 +48,7 @@ public interface IUserService {
 	 *
 	 * @param username 用户名
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse selectQuestion(String username);
@@ -60,7 +60,7 @@ public interface IUserService {
 	 * @param question 问题
 	 * @param answer 答案
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> forgetCheckAnswer(String username, String question, String answer);
@@ -72,7 +72,7 @@ public interface IUserService {
 	 * @param newPassword 新密码
 	 * @param forgetToken token
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> forgetResetPassword(String username, String newPassword, String forgetToken);
@@ -84,7 +84,7 @@ public interface IUserService {
 	 * @param newPassword
 	 * @param user
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<String> resetPassword(String oldPassword, String newPassword, User user);
@@ -94,7 +94,7 @@ public interface IUserService {
 	 *
 	 * @param user
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<User> updateUserInfo(User user);
@@ -104,8 +104,18 @@ public interface IUserService {
 	 *
 	 * @param id 用户id
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	ServerResponse<User> getUserInfo(Integer id);
+
+	/**
+	 * 校验是否是管理员
+	 *
+	 * @param user
+	 * @return com.ronglexie.mmall.common.ServerResponse
+	 * @author ronglexie
+	 * @version 2018/5/26
+	 */
+	ServerResponse checkAdminRole(User user);
 }

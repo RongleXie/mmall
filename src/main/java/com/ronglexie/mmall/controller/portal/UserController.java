@@ -94,7 +94,7 @@ public class UserController {
 	 *
 	 * @param username 用户名
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "forget_get_question.do",method = RequestMethod.POST)
@@ -110,7 +110,7 @@ public class UserController {
 	 * @param question 问题
 	 * @param answer 答案
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
@@ -126,7 +126,7 @@ public class UserController {
 	 * @param newPassword 新密码
 	 * @param forgetToken token
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "forget_reset_password.do",method = RequestMethod.POST)
@@ -140,7 +140,7 @@ public class UserController {
 	 *
 	 * @param session
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.String>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "reset_password.do",method = RequestMethod.POST)
@@ -159,7 +159,7 @@ public class UserController {
 	 * @param session
 	 * @param user
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "update_user_info.do",method = RequestMethod.POST)
@@ -183,7 +183,7 @@ public class UserController {
 	 *
 	 * @param session
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
 	@RequestMapping(value = "get_user_info.do",method = RequestMethod.POST)

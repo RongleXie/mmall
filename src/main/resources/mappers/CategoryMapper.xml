@@ -21,6 +21,13 @@
     from mmall_category
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!-- 根据parentId查询子节点，不递归 -->
+  <select id="getChildrenParallelCategoryByParentId" resultType="com.ronglexie.mmall.domain.Category">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_category
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_category
     where id = #{id,jdbcType=INTEGER}
