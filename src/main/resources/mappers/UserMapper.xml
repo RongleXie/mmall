@@ -153,13 +153,14 @@
   </update>
 
   <!-- 检查用户名是否存在 -->
-  <select id="checkUsername" resultType="int" parameterType="string">
+  <select id="checkUsername" resultType="java.lang.Integer" parameterType="string">
     SELECT
     COUNT(1)
     FROM mmall_user
     WHERE username = #{username}
+  </select>
   <!-- 检查用户邮箱是否存在 -->
-  <select id="checkEmail" resultType="int" parameterType="string">
+  <select id="checkEmail" resultType="java.lang.Integer" parameterType="string">
     SELECT
     COUNT(1)
     FROM
@@ -167,7 +168,7 @@
     WHERE email = #{email}
   </select>
   <!-- 校验找回密码问题答案是否正确 -->
-  <select id="checkAnswer" resultType="int" parameterType="map">
+  <select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
     SELECT
     COUNT(1)
     FROM mmall_user
@@ -176,14 +177,14 @@
     and answer = #{answer}
   </select>
   <!-- 根据用户名查询用户找回密码问题 -->
-  <select id="selectQuestionByusername" resultType="string" parameterType="string">
+  <select id="selectQuestionByUsername" resultType="java.lang.String" parameterType="string">
     SELECT
     question
     FROM mmall_user
     WHERE username = #{username}
   </select>
   <!-- 根据用户名更新用户密码 -->
-  <select id="updatePasswordByUsername" parameterType="map">
+  <select id="updatePasswordByUsername" parameterType="map" resultType="java.lang.Integer">
     UPDATE
     mmall_user
     SET password = #{password},
@@ -191,7 +192,7 @@
     WHERE username = #{username}
   </select>
   <!-- 校验输入密码是否正确 -->
-  <select id="checkPassword" resultType="int" parameterType="map">
+  <select id="checkPassword" resultType="java.lang.Integer" parameterType="map">
     SELECT
     COUNT(1)
     FROM mmall_user
@@ -199,7 +200,7 @@
     and id = #{userId}
   </select>
   <!-- 校验用户Email是否重复 -->
-  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+  <select id="checkEmailByUserId" resultType="java.lang.Integer" parameterType="map">
     SELECT
     COUNT(1)
     FROM mmall_user

@@ -59,7 +59,7 @@ public interface UserMapper {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	String selectQuestionByusername(@Param("username") String username);
+	String selectQuestionByUsername(@Param("username") String username);
 
 	/**
 	 * 校验找回密码问题答案是否正确

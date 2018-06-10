@@ -10,13 +10,17 @@ import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.utils.ZxingUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.ronglexie.mmall.common.PublicConst;
 import com.ronglexie.mmall.common.ServerResponse;
 import com.ronglexie.mmall.dao.OrderItemMapper;
 import com.ronglexie.mmall.dao.OrderMapper;
+import com.ronglexie.mmall.dao.PayInfoMapper;
 import com.ronglexie.mmall.domain.Order;
 import com.ronglexie.mmall.domain.OrderItem;
+import com.ronglexie.mmall.domain.PayInfo;
 import com.ronglexie.mmall.service.IOrderService;
 import com.ronglexie.mmall.util.BigDecimalUtil;
+import com.ronglexie.mmall.util.DateTimeUtil;
 import com.ronglexie.mmall.util.FTPUtil;
 import com.ronglexie.mmall.util.PropertiesUtil;
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +34,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 订单Service层接口实现
@@ -47,6 +52,9 @@ public class IOrderServiceImpl implements IOrderService {
 
     @Autowired
     private OrderItemMapper orderItemMapper;
+
+    @Autowired
+    private PayInfoMapper payInfoMapper;
 
     // 支付宝当面付2.0服务
     private static AlipayTradeService tradeService;
@@ -167,5 +175,50 @@ public class IOrderServiceImpl implements IOrderService {
             }
             logger.info("body:" + response.getBody());
         }
+    }
+
+
+    public ServerResponse alipayCallback(Map<String,String> params){
+        Long orderNo = Long.parseLong(params.get("out_trade_no"));
+        String tradeNo = params.get("trade_no");
+        String traddeStatus = params.get("trade_status");
+        Order order = orderMapper.selectByOrderNo(orderNo);
+        if (order == null) {
+            logger.info("非本商城的订单，回调忽略");
+            return ServerResponse.createByErrorMsg("非本商城的订单，回调忽略");
+        }
+        if(order.getStatus() >= PublicConst.OrderStatusEnum.PAID.getCode()){
+            logger.info("支付宝重复调用");
+            return ServerResponse.createBySuccess("支付宝重复调用");
+        }
+        /*回调成功，将订单状态置为已付款*/
+        if(PublicConst.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(traddeStatus)){
+            order.setPaymentTime(DateTimeUtil.strToDate(params.get("gmt_payment")));
+            order.setStatus(PublicConst.OrderStatusEnum.PAID.getCode());
+            orderMapper.updateByPrimaryKeySelective(order);
+        }
+
+        /*构造支付信息*/
+        PayInfo payInfo = new PayInfo();
+        payInfo.setUserId(order.getUserId());
+        payInfo.setOrderNo(order.getOrderNo());
+        payInfo.setPayPlatform(PublicConst.PayPlatformEunm.ALIPAY.getCode());
+        payInfo.setPlatformNumber(tradeNo);
+        payInfo.setPlatformStatus(traddeStatus);
+        payInfoMapper.insert(payInfo);
+
+        return ServerResponse.createBySuccess();
+    }
+
+    @Override
+    public ServerResponse queryOrderPayStatus(Integer id, Long orderNo) {
+        Order order = orderMapper.selectByOrderNo(orderNo);
+        if (order == null) {
+            return ServerResponse.createByErrorMsg("用户没有该订单");
+        }
+        if(order.getStatus() >= PublicConst.OrderStatusEnum.PAID.getCode()){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
     }
 }

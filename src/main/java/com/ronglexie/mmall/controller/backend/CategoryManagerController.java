@@ -9,6 +9,7 @@ import com.ronglexie.mmall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +31,7 @@ public class CategoryManagerController {
 	@Autowired
 	private ICategoryService iCategoryService;
 
-	@RequestMapping("add_category.do")
+	@RequestMapping(value = "add_category.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ServerResponse addCategory(HttpSession session, String categoryName,@RequestParam(value = "parentId", defaultValue = "0") int parentId){
 		User currentUser = (User)session.getAttribute(PublicConst.CURRENT_USER);
@@ -44,7 +45,7 @@ public class CategoryManagerController {
 		return ServerResponse.createByErrorMsg("无权限操作，需要管理员登录");
 	}
 
-	@RequestMapping("update_category.do")
+	@RequestMapping(value = "update_category.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ServerResponse updateCategory(HttpSession session, Integer categoryId, String categoryName){
 		User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
@@ -58,7 +59,7 @@ public class CategoryManagerController {
 		return ServerResponse.createByErrorMsg("无权限操作，需要管理员登录");
 	}
 
-	@RequestMapping("get_category.do")
+	@RequestMapping(value = "get_category.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ServerResponse getChildrenParallelCategory(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0") Integer categoryId){
 		User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);

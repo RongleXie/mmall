@@ -90,7 +90,7 @@ public class IUserServiceImpl implements IUserService {
 		if(!usernameServerResponse.isSuccess()){
 			return usernameServerResponse;
 		}
-		String question = userMapper.selectQuestionByusername(username);
+		String question = userMapper.selectQuestionByUsername(username);
 		if(StringUtils.isNotBlank(question)){
 			return ServerResponse.createBySuccess(question);
 		}

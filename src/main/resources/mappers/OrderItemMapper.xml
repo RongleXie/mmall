@@ -26,7 +26,7 @@
     from mmall_order_item
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByUserIdAndOrderNo" parameterType="map" resultType="BaseResultMap">
+  <select id="selectByUserIdAndOrderNo" parameterType="map" resultType="com.ronglexie.mmall.domain.OrderItem">
     SELECT
     <include refid="Base_Column_List"/>
     FROM mmall_order_item
