@@ -2,11 +2,13 @@ package com.ronglexie.mmall.service.impl;
 
 import com.alipay.api.AlipayResponse;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
+import com.alipay.demo.trade.config.Configs;
 import com.alipay.demo.trade.model.ExtendParams;
 import com.alipay.demo.trade.model.GoodsDetail;
 import com.alipay.demo.trade.model.builder.AlipayTradePrecreateRequestBuilder;
 import com.alipay.demo.trade.model.result.AlipayF2FPrecreateResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
+import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -58,6 +60,18 @@ public class IOrderServiceImpl implements IOrderService {
 
     // 支付宝当面付2.0服务
     private static AlipayTradeService tradeService;
+
+    static {
+        /** 一定要在创建AlipayTradeService之前调用Configs.init()设置默认参数
+         *  Configs会读取classpath下的zfbinfo.properties文件配置信息，如果找不到该文件则确认该文件是否在classpath目录
+         */
+        Configs.init("zfbinfo.properties");
+
+        /** 使用Configs提供的默认参数
+         *  AlipayTradeService可以使用单例或者为静态成员对象，不需要反复new
+         */
+        tradeService = new AlipayTradeServiceImpl.ClientBuilder().build();
+    }
 
     public ServerResponse pay(Integer userId, Long orderNo, String path){
         HashMap<Object, Object> resultMap = Maps.newHashMap();
@@ -181,7 +195,7 @@ public class IOrderServiceImpl implements IOrderService {
     public ServerResponse alipayCallback(Map<String,String> params){
         Long orderNo = Long.parseLong(params.get("out_trade_no"));
         String tradeNo = params.get("trade_no");
-        String traddeStatus = params.get("trade_status");
+        String tradeStatus = params.get("trade_status");
         Order order = orderMapper.selectByOrderNo(orderNo);
         if (order == null) {
             logger.info("非本商城的订单，回调忽略");
@@ -192,7 +206,7 @@ public class IOrderServiceImpl implements IOrderService {
             return ServerResponse.createBySuccess("支付宝重复调用");
         }
         /*回调成功，将订单状态置为已付款*/
-        if(PublicConst.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(traddeStatus)){
+        if(PublicConst.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(tradeStatus)){
             order.setPaymentTime(DateTimeUtil.strToDate(params.get("gmt_payment")));
             order.setStatus(PublicConst.OrderStatusEnum.PAID.getCode());
             orderMapper.updateByPrimaryKeySelective(order);
@@ -204,7 +218,7 @@ public class IOrderServiceImpl implements IOrderService {
         payInfo.setOrderNo(order.getOrderNo());
         payInfo.setPayPlatform(PublicConst.PayPlatformEunm.ALIPAY.getCode());
         payInfo.setPlatformNumber(tradeNo);
-        payInfo.setPlatformStatus(traddeStatus);
+        payInfo.setPlatformStatus(tradeStatus);
         payInfoMapper.insert(payInfo);
 
         return ServerResponse.createBySuccess();

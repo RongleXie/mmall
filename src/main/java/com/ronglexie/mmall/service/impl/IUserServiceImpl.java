@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -55,6 +56,9 @@ public class IUserServiceImpl implements IUserService {
 		user.setRole(PublicConst.Role.ROLE_CUSTOMER);
 		//MD5加密
 		user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
+
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
 
 		//保存用户
 		int resultCount = userMapper.insert(user);
@@ -145,6 +149,7 @@ public class IUserServiceImpl implements IUserService {
 			return ServerResponse.createByErrorMsg("原密码错误");
 		}
 		user.setPassword(MD5Util.MD5EncodeUtf8(newPassword));
+        user.setUpdateTime(new Date());
 		int updateCount = userMapper.updateByPrimaryKeySelective(user);
 		if(updateCount > 0){
 			return ServerResponse.createBySuccessMsg("修改密码成功");
@@ -167,7 +172,7 @@ public class IUserServiceImpl implements IUserService {
 		updateUser.setPhone(user.getPhone());
 		updateUser.setQuestion(user.getQuestion());
 		updateUser.setAnswer(user.getAnswer());
-
+        updateUser.setUpdateTime(new Date());
 		int updateCount = userMapper.updateByPrimaryKeySelective(updateUser);
 
 		if(updateCount > 0){
