@@ -41,4 +41,14 @@ public interface ICategoryService {
 	 * @version 2018/5/27
 	 */
 	ServerResponse getChildrenParallelCategory(Integer categoryId);
+
+    /***
+     * 递归查询当前种类及子各类的Id集合
+     *
+     * @param categoryId
+     * @return com.ronglexie.mmall.common.ServerResponse
+     * @author ronglexie
+     * @version 2018/7/15
+     */
+	ServerResponse getChildrenDeepCategoryId(Integer categoryId);
 }

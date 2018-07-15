@@ -73,4 +73,19 @@ public class CategoryManagerController {
 		}
 		return ServerResponse.createByErrorMsg("无权限操作，需要管理员登录");
 	}
+
+	@RequestMapping(value = "get_deep_category.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ServerResponse getChildrenAndDeepChildrenCategory(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0") Integer categoryId){
+		User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+		if (currentUser == null) {
+			return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+		}
+		//校验是否为管理员
+		if(iUserService.checkAdminRole(currentUser).isSuccess()){
+			//获取子节点的种类ID集合，递归
+			return iCategoryService.getChildrenDeepCategoryId(categoryId);
+		}
+		return ServerResponse.createByErrorMsg("无权限操作，需要管理员登录");
+	}
 }
