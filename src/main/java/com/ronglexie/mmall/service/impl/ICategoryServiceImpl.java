@@ -87,7 +87,7 @@ public class ICategoryServiceImpl implements ICategoryService{
 	 * @version 2018/7/15
 	 */
 	@Override
-	public ServerResponse getChildrenDeepCategoryId(Integer categoryId){
+	public ServerResponse<List<Integer>> getChildrenDeepCategoryId(Integer categoryId){
         if(categoryId == null){
             return ServerResponse.createByErrorMsg("获取当前种类及子各类的Id集合参数错误");
         }

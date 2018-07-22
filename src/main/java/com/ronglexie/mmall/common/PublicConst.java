@@ -1,5 +1,9 @@
 package com.ronglexie.mmall.common;
 
+import com.google.common.collect.Sets;
+
+import java.util.Set;
+
 /**
  * 公共常量
  *
@@ -94,6 +98,29 @@ public class PublicConst {
             return value;
         }
 
+    }
+
+    public enum ProductStatusEunm{
+		ON_SALE(1,"在线");
+		private int code;
+    	private String value;
+
+		ProductStatusEunm(int code, String value) {
+			this.code = code;
+			this.value = value;
+		}
+
+		public int getCode() {
+			return code;
+		}
+
+		public String getValue() {
+			return value;
+		}
+	}
+
+	public interface ProductListOrderBy{
+		Set<String> PRICE_ASC_DSC = Sets.newHashSet("price_ase","price_dsc");
     }
 
 

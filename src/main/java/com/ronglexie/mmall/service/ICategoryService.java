@@ -2,6 +2,8 @@ package com.ronglexie.mmall.service;
 
 import com.ronglexie.mmall.common.ServerResponse;
 
+import java.util.List;
+
 /**
  * 种类Service
  *
@@ -50,5 +52,5 @@ public interface ICategoryService {
      * @author ronglexie
      * @version 2018/7/15
      */
-	ServerResponse getChildrenDeepCategoryId(Integer categoryId);
+	ServerResponse<List<Integer>> getChildrenDeepCategoryId(Integer categoryId);
 }
