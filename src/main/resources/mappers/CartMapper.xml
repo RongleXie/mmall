@@ -21,9 +21,45 @@
     from mmall_cart
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectCartByUserIdAndProductId" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_cart
+    where user_id = #{userId,jdbcType=INTEGER}
+    and product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <select id="selectCartByUserId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_cart
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectCartProductCheckedStatusByUserId" resultType="int" parameterType="int">
+    select
+    count(1)
+    from mmall_cart
+    where checked = 0
+    and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectProductCount" resultType="java.lang.Integer" parameterType="int">
+    select
+    NULLIF (sum(quantity),0)
+    from mmall_cart
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_cart
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteCartByUserIdAndProductIds" parameterType="map">
+    delete from mmall_cart
+    where user_id = #{userId,jdbcType=INTEGER}
+    <if test="productIds != null">
+      and product_id in
+      <foreach collection="productIds" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
   </delete>
   <insert id="insert" parameterType="com.ronglexie.mmall.domain.Cart" >
     insert into mmall_cart (id, user_id, product_id, 
@@ -115,5 +151,14 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="checkedOrUnCheckedProduct" parameterType="map">
+    update mmall_cart
+    set checked = #{checked,jdbcType=INTEGER},
+    update_time = now()
+    where user_id = #{userId,jdbcType=INTEGER}
+    <if test="productId != null" >
+      and product_id = #{productId,jdbcType=INTEGER}
+    </if>
   </update>
 </mapper>

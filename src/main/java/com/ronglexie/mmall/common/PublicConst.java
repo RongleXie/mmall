@@ -123,5 +123,12 @@ public class PublicConst {
 		Set<String> PRICE_ASC_DSC = Sets.newHashSet("price_ase","price_dsc");
     }
 
+    public interface Cart {
+    	int CHECKED = 1;
+    	int UN_CHECKED = 0;
+
+    	String LIMIT_NUM_SUCCESS = "1";
+    	String LIMIT_NUM_FAIL = "0";
+	}
 
 }
