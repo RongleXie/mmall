@@ -57,7 +57,7 @@ public class UserController {
 	@ResponseBody
 	public ServerResponse<String> logout(HttpSession session){
 		session.removeAttribute(PublicConst.CURRENT_USER);
-		return ServerResponse.createBySuccess();
+		return ServerResponse.createBySuccessMsg("登出用户成功");
 	}
 
 	/**

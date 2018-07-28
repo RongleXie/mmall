@@ -184,13 +184,13 @@
     WHERE username = #{username}
   </select>
   <!-- 根据用户名更新用户密码 -->
-  <select id="updatePasswordByUsername" parameterType="map" resultType="java.lang.Integer">
+  <update id="updatePasswordByUsername" parameterType="map">
     UPDATE
     mmall_user
     SET password = #{password},
     update_time = now()
     WHERE username = #{username}
-  </select>
+  </update>
   <!-- 校验输入密码是否正确 -->
   <select id="checkPassword" resultType="java.lang.Integer" parameterType="map">
     SELECT

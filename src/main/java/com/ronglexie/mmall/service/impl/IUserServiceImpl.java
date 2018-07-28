@@ -90,10 +90,6 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	public ServerResponse selectQuestion(String username) {
-		ServerResponse<String> usernameServerResponse = this.checkValid(username, PublicConst.USERNAME);
-		if(!usernameServerResponse.isSuccess()){
-			return usernameServerResponse;
-		}
 		String question = userMapper.selectQuestionByUsername(username);
 		if(StringUtils.isNotBlank(question)){
 			return ServerResponse.createBySuccess(question);
@@ -121,7 +117,7 @@ public class IUserServiceImpl implements IUserService {
 		}
 		//校验用户名是否存在
 		ServerResponse<String> serverResponse = this.checkValid(username, PublicConst.USERNAME);
-		if(!serverResponse.isSuccess()){
+		if(serverResponse.isSuccess()){
 			return ServerResponse.createByErrorMsg("用户不存在");
 		}
 		String token = LocalCache.getKey(LocalCache.TOKEN_PREFIX + username);
@@ -133,7 +129,7 @@ public class IUserServiceImpl implements IUserService {
 			String md5Password = MD5Util.MD5EncodeUtf8(newPassword);
 			int resultCount = userMapper.updatePasswordByUsername(username, md5Password);
 			if(resultCount > 0){
-				ServerResponse.createBySuccessMsg("修改密码成功");
+				return ServerResponse.createBySuccessMsg("修改密码成功");
 			}
 		}else {
 			return ServerResponse.createByErrorMsg("token错误，请重试");
