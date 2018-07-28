@@ -5,10 +5,12 @@ import com.ronglexie.mmall.common.ResponseEnum;
 import com.ronglexie.mmall.common.ServerResponse;
 import com.ronglexie.mmall.domain.User;
 import com.ronglexie.mmall.service.IUserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
@@ -35,7 +37,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
-	@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "login.do")
 	@ResponseBody
 	public ServerResponse<User> login(String username, String password, HttpSession session){
 		ServerResponse<User> userServerResponse = iUserService.login(username, password);
@@ -53,7 +55,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/6
 	 */
-	@RequestMapping(value = "logout.do",method = RequestMethod.POST)
+	@RequestMapping(value = "logout.do")
 	@ResponseBody
 	public ServerResponse<String> logout(HttpSession session){
 		session.removeAttribute(PublicConst.CURRENT_USER);
@@ -68,7 +70,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "register.do", method = RequestMethod.POST)
+	@RequestMapping(value = "register.do")
 	@ResponseBody
 	public ServerResponse<String> register(User user){
 		return iUserService.register(user);
@@ -83,7 +85,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
+	@RequestMapping(value = "check_valid.do")
 	@ResponseBody
 	public ServerResponse<String> checkValid(String value, String type){
 		return iUserService.checkValid(value, type);
@@ -97,7 +99,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "forget_get_question.do",method = RequestMethod.POST)
+	@RequestMapping(value = "forget_get_question.do")
 	@ResponseBody
 	public ServerResponse<String> forgetGetQuestion(String username){
 		return iUserService.selectQuestion(username);
@@ -113,7 +115,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
+	@RequestMapping(value = "forget_check_answer.do")
 	@ResponseBody
 	public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer){
 		return iUserService.forgetCheckAnswer(username, question, answer);
@@ -129,7 +131,7 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "forget_reset_password.do",method = RequestMethod.POST)
+	@RequestMapping(value = "forget_reset_password.do")
 	@ResponseBody
 	public ServerResponse<String> forgetResetPassword(String username, String newPassword, String forgetToken){
 		return iUserService.forgetResetPassword(username, newPassword, forgetToken);
@@ -143,9 +145,9 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "reset_password.do",method = RequestMethod.POST)
+	@RequestMapping(value = "reset_password.do")
 	@ResponseBody
-	public ServerResponse<String> resetPassword(String oldPassword, String newPassword, HttpSession session){
+	public ServerResponse<String> resetPassword(@RequestParam(value = "passwordOld") String oldPassword,@RequestParam(value = "passwordNew")  String newPassword, HttpSession session){
 		User user = (User)session.getAttribute(PublicConst.CURRENT_USER);
 		if(user == null){
 			return ServerResponse.createByErrorMsg("用户未登录");
@@ -162,9 +164,9 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "update_user_info.do",method = RequestMethod.POST)
+	@RequestMapping(value = "update_information.do")
 	@ResponseBody
-	public ServerResponse<User> updateUserInfo(HttpSession session, User user){
+	public ServerResponse<User> updateInformation(HttpSession session, User user){
 		User currentUser = (User)session.getAttribute(PublicConst.CURRENT_USER);
 		if(currentUser == null){
 			return ServerResponse.createByErrorMsg("用户未登录");
@@ -186,9 +188,27 @@ public class UserController {
 	 * @author ronglexie
 	 * @version 2018/4/7
 	 */
-	@RequestMapping(value = "get_user_info.do",method = RequestMethod.POST)
+	@RequestMapping(value = "get_user_info.do")
 	@ResponseBody
 	public ServerResponse<User> getUserInfo(HttpSession session){
+		User currentUser = (User)session.getAttribute(PublicConst.CURRENT_USER);
+		if(currentUser == null){
+			return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(), "未登录，请重新登录");
+		}
+		return iUserService.getUserInfo(currentUser.getId());
+	}
+
+	/**
+	 * 获取个人用户信息
+	 *
+	 * @param session
+	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.User>
+	 * @author ronglexie
+	 * @version 2018/4/7
+	 */
+	@RequestMapping(value = "get_information.do")
+	@ResponseBody
+	public ServerResponse<User> getInformation(HttpSession session){
 		User currentUser = (User)session.getAttribute(PublicConst.CURRENT_USER);
 		if(currentUser == null){
 			return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(), "未登录，请重新登录");

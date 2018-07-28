@@ -34,7 +34,7 @@
     from mmall_cart
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
-  <select id="selectCartProductCheckedStatusByUserId" resultType="int" parameterType="int">
+  <select id="selectCartProductCheckedStatusByUserId" resultType="java.lang.Integer" parameterType="int">
     select
     count(1)
     from mmall_cart
@@ -43,7 +43,7 @@
   </select>
   <select id="selectProductCount" resultType="java.lang.Integer" parameterType="int">
     select
-    NULLIF (sum(quantity),0)
+    IFNULL (sum(quantity),0)
     from mmall_cart
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
