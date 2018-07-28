@@ -41,6 +41,19 @@
    from mmall_order
    where order_no = #{orderNo,jdbcType=BIGINT}
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_order
+    where user_id = #{userId,jdbcType=BIGINT}
+    order by create_time desc
+  </select>
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_order
+    order by create_time desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_order
     where id = #{id,jdbcType=INTEGER}

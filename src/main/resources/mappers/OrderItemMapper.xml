@@ -33,6 +33,12 @@
     WHERE user_id = #{userId}
     AND order_no = #{orderNo}
   </select>
+  <select id="selectByOrderNo" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_order_item
+    WHERE order_no = #{orderNo}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_order_item
     where id = #{id,jdbcType=INTEGER}

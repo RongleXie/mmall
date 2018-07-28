@@ -38,6 +38,58 @@ public class OrderController {
     @Autowired
     private IOrderService iOrderService;
 
+    @RequestMapping(value = "create.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse create(HttpSession session, Integer shippingId){
+        User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+        if (currentUser == null) {
+            return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+        }
+        return iOrderService.createOrder(currentUser.getId(),shippingId);
+    }
+
+    @RequestMapping(value = "cancel.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse cancel(HttpSession session, Long orderNo){
+        User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+        if (currentUser == null) {
+            return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+        }
+        return iOrderService.cancel(currentUser.getId(),orderNo);
+    }
+
+    @RequestMapping(value = "get_order_cart_product.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getOrderCartProduct(HttpSession session){
+        User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+        if (currentUser == null) {
+            return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+        }
+        return iOrderService.getOrderCartProduct(currentUser.getId());
+    }
+
+    @RequestMapping(value = "detail.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse detail(HttpSession session, Long orderNo){
+        User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+        if (currentUser == null) {
+            return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+        }
+        return iOrderService.getOrderDetail(currentUser.getId(),orderNo);
+    }
+
+    @RequestMapping(value = "list.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse list(HttpSession session,
+                               @RequestParam(value = "pageNum",defaultValue = "1")int pageNum,
+                               @RequestParam(value = "pageSize",defaultValue = "10")int pageSize){
+        User currentUser = (User) session.getAttribute(PublicConst.CURRENT_USER);
+        if (currentUser == null) {
+            return ServerResponse.createByErrorCodeMsg(ResponseEnum.NEED_LOGIN.getCode(),"用户未登录，请登录");
+        }
+        return iOrderService.getOrderList(currentUser.getId(),pageNum,pageSize);
+    }
+
     @RequestMapping(value = "pay.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse pay(HttpSession session, @RequestParam Long orderNo, HttpServletRequest request){
