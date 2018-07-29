@@ -1,6 +1,9 @@
 package com.ronglexie.mmall.domain.vo;
 
 import com.ronglexie.mmall.domain.OrderItem;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,6 +14,9 @@ import java.util.List;
  * @author ronglexie
  * @version 2018/7/25
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderProductVo {
 	private List<OrderItemVo> orderItemVoList;
 	private BigDecimal productTotalPrice;

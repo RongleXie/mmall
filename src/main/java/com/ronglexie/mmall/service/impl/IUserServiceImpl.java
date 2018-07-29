@@ -7,6 +7,7 @@ import com.ronglexie.mmall.dao.UserMapper;
 import com.ronglexie.mmall.domain.User;
 import com.ronglexie.mmall.service.IUserService;
 import com.ronglexie.mmall.util.MD5Util;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.UUID;
  * @version 2018/4/6
  */
 @Service("iUserService")
+@Slf4j
 public class IUserServiceImpl implements IUserService {
 
 	@Autowired

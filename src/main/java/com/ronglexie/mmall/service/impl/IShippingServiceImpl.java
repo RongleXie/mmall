@@ -8,6 +8,7 @@ import com.ronglexie.mmall.common.ServerResponse;
 import com.ronglexie.mmall.dao.ShippingMapper;
 import com.ronglexie.mmall.domain.Shipping;
 import com.ronglexie.mmall.service.IShippingService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.Map;
  * @version 2018/7/22
  */
 @Service("iShippingService")
+@Slf4j
 public class IShippingServiceImpl implements IShippingService {
 
 	@Autowired

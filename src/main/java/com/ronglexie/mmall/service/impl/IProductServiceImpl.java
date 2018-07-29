@@ -16,6 +16,7 @@ import com.ronglexie.mmall.service.ICategoryService;
 import com.ronglexie.mmall.service.IProductService;
 import com.ronglexie.mmall.util.DateTimeUtil;
 import com.ronglexie.mmall.util.PropertiesUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import java.util.List;
  * @version 2018/7/15
  */
 @Service("iProductService")
+@Slf4j
 public class IProductServiceImpl implements IProductService {
 
     @Autowired

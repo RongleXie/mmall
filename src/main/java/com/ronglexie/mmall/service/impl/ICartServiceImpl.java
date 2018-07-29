@@ -14,6 +14,7 @@ import com.ronglexie.mmall.domain.vo.CartVo;
 import com.ronglexie.mmall.service.ICartService;
 import com.ronglexie.mmall.util.BigDecimalUtil;
 import com.ronglexie.mmall.util.PropertiesUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ import java.util.List;
  * @author ronglexie
  * @version 2018/7/22
  */
-@Service("iCartSercie")
+@Service("iCartService")
+@Slf4j
 public class ICartServiceImpl implements ICartService {
 
 	@Autowired

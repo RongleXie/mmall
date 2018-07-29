@@ -3,8 +3,7 @@ package com.ronglexie.mmall.common;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -15,11 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @author ronglexie
  * @version 2018/4/7
  */
+@Slf4j
 public class LocalCache {
-	/**
-	 * 日志对象
-	 */
-	private static Logger logger = LoggerFactory.getLogger(LocalCache.class);
 
 	/**
 	 * Token缓存key前缀
@@ -48,7 +44,7 @@ public class LocalCache {
 			}
 			return value;
 		} catch (ExecutionException e) {
-			logger.error("localCache get error",e);
+			log.error("localCache get error",e);
 		}
 		return null;
 	}
