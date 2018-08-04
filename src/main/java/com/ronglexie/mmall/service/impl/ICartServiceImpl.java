@@ -64,7 +64,7 @@ public class ICartServiceImpl implements ICartService {
 	 *
 	 * @param userId
 	 * @return com.ronglexie.mmall.domain.vo.CartVo
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	private CartVo getCartVoLimit(Integer userId){
@@ -126,7 +126,7 @@ public class ICartServiceImpl implements ICartService {
 	 *
 	 * @param userId
 	 * @return boolean
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	private boolean getAllCheckedStatus(Integer userId){

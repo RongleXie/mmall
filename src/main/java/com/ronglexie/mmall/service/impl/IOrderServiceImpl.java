@@ -294,7 +294,7 @@ public class IOrderServiceImpl implements IOrderService {
      * @param order
      * @param orderItemList
      * @return com.ronglexie.mmall.domain.vo.OrderVo
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     private OrderVo assembleOrderVo(Order order, List<OrderItem> orderItemList){
@@ -339,7 +339,7 @@ public class IOrderServiceImpl implements IOrderService {
      *
      * @param cartList
      * @return void
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     private void cleanCart(List<Cart> cartList){
@@ -353,7 +353,7 @@ public class IOrderServiceImpl implements IOrderService {
      *
      * @param orderItemList
      * @return void
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     private void reduceProductStock(List<OrderItem> orderItemList){
@@ -371,7 +371,7 @@ public class IOrderServiceImpl implements IOrderService {
      * @param shippingId
      * @param payment
      * @return com.ronglexie.mmall.domain.Order
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     public Order assembleOrder(Integer userId,Integer shippingId,BigDecimal payment){
@@ -397,7 +397,7 @@ public class IOrderServiceImpl implements IOrderService {
      *
      * @param
      * @return long
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     public long generateOrderNo(){
@@ -410,7 +410,7 @@ public class IOrderServiceImpl implements IOrderService {
      *
      * @param orderItemList
      * @return java.math.BigDecimal
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     public BigDecimal getOrderTotalPrice(List<OrderItem> orderItemList){
@@ -427,7 +427,7 @@ public class IOrderServiceImpl implements IOrderService {
      * @param userId
      * @param cartList
      * @return com.ronglexie.mmall.common.ServerResponse<java.util.List<com.ronglexie.mmall.domain.OrderItem>>
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     private ServerResponse<List<OrderItem>> getCartOrderItems(Integer userId, List<Cart> cartList){

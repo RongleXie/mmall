@@ -16,7 +16,7 @@ public interface IFileService {
 	 * @param file
 	 * @param path
 	 * @return java.lang.String
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/21
 	 */
 	String upload(MultipartFile file, String path);

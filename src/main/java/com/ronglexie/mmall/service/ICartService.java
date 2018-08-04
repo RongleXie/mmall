@@ -18,7 +18,7 @@ public interface ICartService {
 	 * @param productId
 	 * @param count
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.CartVo>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<CartVo> add(Integer userId, Integer productId, Integer count);
@@ -30,7 +30,7 @@ public interface ICartService {
 	 * @param productId
 	 * @param count
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.CartVo>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<CartVo> update(Integer userId,Integer productId,Integer count);
@@ -41,7 +41,7 @@ public interface ICartService {
 	 * @param userId
 	 * @param productIds
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.CartVo>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<CartVo> deleteProduct(Integer userId, String productIds);
@@ -51,7 +51,7 @@ public interface ICartService {
 	 *
 	 * @param userId
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.CartVo>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<CartVo> getCartList(Integer userId);
@@ -62,7 +62,7 @@ public interface ICartService {
 	 * @param userId
 	 * @param checked
 	 * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.CartVo>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<CartVo> selectOrUnSelect(Integer userId, Integer checked, Integer productId);
@@ -72,7 +72,7 @@ public interface ICartService {
 	 *
 	 * @param userId
 	 * @return com.ronglexie.mmall.common.ServerResponse<java.lang.Integer>
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse<Integer> getCartProductCount(Integer userId);

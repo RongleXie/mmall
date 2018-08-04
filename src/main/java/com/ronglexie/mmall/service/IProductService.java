@@ -38,7 +38,7 @@ public interface IProductService {
      *
      * @param productId
      * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.ProductDetailVo>
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/21
      */
     ServerResponse<ProductDetailVo> manageProductDetail(Integer productId);
@@ -49,7 +49,7 @@ public interface IProductService {
      * @param pageNum
      * @param pagetSize
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/21
      */
     ServerResponse getProductList(int pageNum, int pagetSize);
@@ -62,7 +62,7 @@ public interface IProductService {
      * @param pageNum
      * @param pagetSize
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/21
      */
     ServerResponse searchProduct(String productName,Integer productId,int pageNum, int pagetSize);
@@ -72,7 +72,7 @@ public interface IProductService {
      *
      * @param productId
      * @return com.ronglexie.mmall.common.ServerResponse<com.ronglexie.mmall.domain.vo.ProductDetailVo>
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/21
      */
     ServerResponse<ProductDetailVo> getProductDetail(Integer productId);
@@ -86,7 +86,7 @@ public interface IProductService {
      * @param pageSize
      * @param orderBy
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/22
      */
     ServerResponse getProductListByKeywordAndCategory(String keyword,Integer categoryId,int pageNum,int pageSize,String orderBy);

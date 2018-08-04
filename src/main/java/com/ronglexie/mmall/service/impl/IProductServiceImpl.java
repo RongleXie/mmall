@@ -103,7 +103,7 @@ public class IProductServiceImpl implements IProductService {
 	 *
      * @param product
      * @return com.ronglexie.mmall.domain.vo.ProductDetailVo
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/21
      */
     private ProductDetailVo assembleProductDetailVO(Product product){
@@ -142,7 +142,7 @@ public class IProductServiceImpl implements IProductService {
 	 *
 	 * @param product
 	 * @return com.ronglexie.mmall.domain.vo.ProductDetailVo
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/21
 	 */
     private ProductListVo assembleProductListVO(Product product){

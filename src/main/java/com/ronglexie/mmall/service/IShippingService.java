@@ -17,7 +17,7 @@ public interface IShippingService {
 	 * @param userId
 	 * @param shipping
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse add(Integer userId, Shipping shipping);
@@ -28,7 +28,7 @@ public interface IShippingService {
 	 * @param userId
 	 * @param shippingId
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse delete(Integer userId, Integer shippingId);
@@ -39,7 +39,7 @@ public interface IShippingService {
 	 * @param userId
 	 * @param shipping
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse update(Integer userId, Shipping shipping);
@@ -50,7 +50,7 @@ public interface IShippingService {
 	 * @param userId
 	 * @param shippingId
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse select(Integer userId, Integer shippingId);
@@ -62,7 +62,7 @@ public interface IShippingService {
 	 * @param pageNum
 	 * @param pageSize
 	 * @return com.ronglexie.mmall.common.ServerResponse
-	 * @author wxt.xqr
+	 * @author ronglexie
 	 * @version 2018/7/22
 	 */
 	ServerResponse getShippingList(Integer userId, Integer pageNum, Integer pageSize);

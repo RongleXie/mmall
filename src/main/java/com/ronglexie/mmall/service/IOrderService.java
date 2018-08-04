@@ -19,7 +19,7 @@ public interface IOrderService {
      * @param orderNo
      * @param path
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/6/10
      */
     ServerResponse pay(Integer userId, Long orderNo, String path);
@@ -29,7 +29,7 @@ public interface IOrderService {
      *
      * @param params
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/6/10
      */
     ServerResponse alipayCallback(Map<String,String> params);
@@ -40,7 +40,7 @@ public interface IOrderService {
      * @param userId
      * @param orderNo
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/6/10
      */
     ServerResponse queryOrderPayStatus(Integer userId, Long orderNo);
@@ -51,7 +51,7 @@ public interface IOrderService {
      * @param userId
      * @param shippingId
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/24
      */
     ServerResponse createOrder(Integer userId, Integer shippingId);
@@ -62,7 +62,7 @@ public interface IOrderService {
      * @param userId
      * @param orderNo
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse cancel(Integer userId, Long orderNo);
@@ -72,7 +72,7 @@ public interface IOrderService {
      *
      * @param userId
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse getOrderCartProduct(Integer userId);
@@ -83,7 +83,7 @@ public interface IOrderService {
      * @param userId
      * @param orderNo
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse getOrderDetail(Integer userId, Long orderNo);
@@ -95,7 +95,7 @@ public interface IOrderService {
      * @param pageNum
      * @param pageSize
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse getOrderList(Integer userId, int pageNum, int pageSize);
@@ -106,7 +106,7 @@ public interface IOrderService {
      * @param pageNum
      * @param pageSize
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse getManageList(int pageNum, int pageSize);
@@ -116,7 +116,7 @@ public interface IOrderService {
      *
      * @param orderNo
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse getManageDetail(Long orderNo);
@@ -128,7 +128,7 @@ public interface IOrderService {
      * @param pageNum
      * @param pageSize
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse manageSearch(Long orderNo, int pageNum, int pageSize);
@@ -138,7 +138,7 @@ public interface IOrderService {
      *
      * @param orderNo
      * @return com.ronglexie.mmall.common.ServerResponse
-     * @author wxt.xqr
+     * @author ronglexie
      * @version 2018/7/25
      */
     ServerResponse sendGoods(Long orderNo);
